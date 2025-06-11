@@ -1,5 +1,6 @@
 import './assets/main.css'
-
+import "./styles.css"
+// импортируес стили
 import { StrictMode } from 'react'
 import { Routes, Route, HashRouter } from 'react-router'
 import React from 'react'

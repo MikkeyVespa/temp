@@ -1,12 +1,13 @@
 import { Client } from 'pg';
 
+// акутальные данные для подключения к бд
 export default async () => {
   const client = new Client({
     user: 'postgres',
-    password: 'postgres',
+    password: 'пароль',
     host: 'localhost',
     port: '5432',
-    database: 'demo_2025',
+    database: 'newForTren',
   });
 
   await client.connect();

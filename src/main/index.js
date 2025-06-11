@@ -14,6 +14,21 @@ async function foo(event, data) {
   }
 }
 
+// запрос для возврата данных по партнерам
+async function getPartners() {
+  try {
+
+    const response = await global.dbclient.query(`
+      SELECT * FROM partners;`
+    )
+
+    console.log(response.rows)
+    return response.rows
+  } catch (e) {
+    dialog.showErrorBox('Ошибка', e)
+  }
+}
+
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 900,
@@ -48,7 +63,8 @@ app.whenReady().then(async () => {
 
   global.dbclient = await connectDB();
 
-  ipcMain.handle('sendSignal', foo)
+  // зарегистрируем обработчик
+  ipcMain.handle('getPartners', getPartners)
 
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
