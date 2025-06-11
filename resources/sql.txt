@@ -1,0 +1,43 @@
+create table products (
+	id serial primary key,
+	type text,
+	name text,
+	articul text,
+	cost text
+);
+
+create table partners (
+	id serial primary key,
+	type text,
+	name text,
+	director text,
+	email text,
+	phone text,
+	address text,
+	inn text,
+	rating integer
+);
+
+
+// для связующей таблицы
+
+create table temp_partnerproducts (
+    product_name text
+    partner_name text
+    count int
+);
+
+create table partnerproducts (
+    product_name int,
+    partner_name int,
+    count int
+);
+
+INSERT INTO partnerproducts (product_id, partners_id, count)
+SELECT
+    p.id,
+    pr.id,
+    t.count
+FROM temp_partnerproducts t
+JOIN products p ON p.name = t.product_name
+JOIN partners pr ON pr.name = t.partner_name;
