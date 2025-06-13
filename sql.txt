@@ -28,8 +28,8 @@ create table temp_partnerproducts (
 );
 
 create table partnerproducts (
-	product_id int references products(id),
-	partners_id int references partners(id),
+    product_name int,
+    partner_name int,
     count int
 );
 
